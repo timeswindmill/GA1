@@ -8,23 +8,23 @@ import utility.MathsFunctions;
 
 public class MachineDna implements Dna<ChunkMachine> {
 
-    private ChunkMachine[] dnaString;
+    private ChunkMachine[] chunks;
 
     public MachineDna(ChunkMachine[] newString) {
-        dnaString = newString;
+        chunks = newString;
     }
 
 
     @Override
     public ChunkMachine[] getChunks() {
-        return dnaString;
+        return chunks;
     }
 
     @Override
     public double getHash() {
         double sum = 0;
-        for (int ii = 0; ii < dnaString.length; ii++) {
-            sum = sum + dnaString[ii].getHash();
+        for (int ii = 0; ii < chunks.length; ii++) {
+            sum = sum + chunks[ii].getHash();
         }
         return sum;
     }
@@ -35,12 +35,12 @@ public class MachineDna implements Dna<ChunkMachine> {
         for (int ii = 0; ii < minLength; ii++) {
 
             if (MathsFunctions.getRandomInt(100) < RunConfig.INSTANCE.getMutatePercent()) {
-                dnaString[ii].randomizeBits();
+                chunks[ii] = ChunkMachine.createRandom();
             }
             if (MathsFunctions.getTrueFalse()) {
-                dnaString[ii] = parent1[ii];
+                chunks[ii] = parent1[ii];
             } else {
-                dnaString[ii] = parent2[ii];
+                chunks[ii] = parent2[ii];
             }
 
         }
@@ -84,7 +84,7 @@ public class MachineDna implements Dna<ChunkMachine> {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
 
-        for (Chunk chunk : dnaString) {
+        for (Chunk chunk : chunks) {
             sb.append(chunk);
             sb.append(",");
         }

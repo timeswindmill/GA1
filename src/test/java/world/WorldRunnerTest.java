@@ -11,7 +11,8 @@ public class WorldRunnerTest {
     @Test
     public void testRunOneGeneration() throws Exception {
         FitnessEvaluator sumEvaluator = new SumEvaluator();
-        Population testPop = Population.createRandomPopulation(100);
+        PopulationSimple testPop = new PopulationSimple();
+        testPop.createRandomPopulation(100);
         WorldRunner.runOneGeneration(testPop, sumEvaluator, 1);
         // ? what to test ?
         Assert.assertTrue(testPop.getMeanFitness() > 0);

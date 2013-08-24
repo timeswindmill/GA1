@@ -35,7 +35,7 @@ public class SimpleDna implements Dna<ChunkLong> {
         for (int ii = 0; ii < minLength; ii++) {
 
             if (MathsFunctions.getRandomInt(100) < RunConfig.INSTANCE.getMutatePercent()) {
-                dnaString[ii].randomizeBits();
+                dnaString[ii] = ChunkLong.createRandom();
             }
             if (MathsFunctions.getTrueFalse()) {
                 dnaString[ii] = parent1[ii];

@@ -9,11 +9,11 @@ public class DnaTest {
     @Test
     public void testCreateDna() throws Exception {
 
-        Dna newSimpleDna = DnaHelper.createRandomSimpleDna();
+        Dna newSimpleDna = SimpleDnaHelper.INSTANCE.createRandomDna();
         Assert.assertNotNull(newSimpleDna);
 
         long[] startString = {1L, 3L, 5L, 7L, 9L};
-        SimpleDna newSimpleDna2 = DnaHelper.createSimpleDnaFromLongString(startString);
+        SimpleDna newSimpleDna2 = SimpleDnaHelper.INSTANCE.createDnaFromLongString(startString);
         double hash2 = newSimpleDna2.getHash();
         Assert.assertEquals(25.0, hash2);
 
@@ -26,15 +26,15 @@ public class DnaTest {
         long[] startString1 = {1L, 3L, 5L, 7L, 9L};
         long[] startString2 = {2L, 4L, 6L, 8L, 10L};
 
-        SimpleDna newSimpleDna1 = DnaHelper.createSimpleDnaFromLongString(startString1);
+        SimpleDna newSimpleDna1 = SimpleDnaHelper.INSTANCE.createDnaFromLongString(startString1);
         double hash1 = newSimpleDna1.getHash();
         Assert.assertEquals(25.0, hash1);
 
-        SimpleDna newSimpleDna2 = DnaHelper.createSimpleDnaFromLongString(startString2);
+        SimpleDna newSimpleDna2 = SimpleDnaHelper.INSTANCE.createDnaFromLongString(startString2);
         double hash2 = newSimpleDna2.getHash();
         Assert.assertEquals(30.0, hash2);
 
-        SimpleDna combined = DnaHelper.createSimpleDnaFromCombined(newSimpleDna1, newSimpleDna2);
+        SimpleDna combined = SimpleDnaHelper.INSTANCE.createDnaFromCombined(newSimpleDna1, newSimpleDna2);
         Assert.assertNotNull(combined);
 
         double combinedHash = combined.getHash();
@@ -47,18 +47,18 @@ public class DnaTest {
     @Test
     public void testReadWriteData() throws Exception {
 
-        SimpleDna dna1 = DnaHelper.createRandomSimpleDna();
-        SimpleDna dna2 = DnaHelper.createRandomSimpleDna();
-        SimpleDna dna3 = DnaHelper.createRandomSimpleDna();
-        Dna[] bestDna = {dna1, dna2, dna3};
+        SimpleDna dna1 = SimpleDnaHelper.INSTANCE.createRandomDna();
+        SimpleDna dna2 = SimpleDnaHelper.INSTANCE.createRandomDna();
+        SimpleDna dna3 = SimpleDnaHelper.INSTANCE.createRandomDna();
+        SimpleDna[] bestDna = {dna1, dna2, dna3};
 
         String fileName = "./testData.dat";
 
-        DnaHelper.writeToFile(bestDna, fileName);
+        SimpleDnaHelper.INSTANCE.writeToFile(bestDna, fileName);
 
         // now read it back
 
-        Dna[] newDnaArray = DnaHelper.readFromFile(fileName);
+        SimpleDna[] newDnaArray = SimpleDnaHelper.INSTANCE.readFromFile(fileName);
 
         Assert.assertEquals(dna1, newDnaArray[0]);
         Assert.assertEquals(dna2, newDnaArray[1]);

@@ -12,7 +12,8 @@ public class PolyWorld extends GeneralWorld {
 
 
     public static PolyWorld buildPolyWorld() {
-        Population worldPopulation = Population.createRandomPopulation(RunConfig.INSTANCE.getStartingSize());
+        Population worldPopulation = new PopulationSimple();
+        worldPopulation.createRandomPopulation(RunConfig.INSTANCE.getStartingSize());
         FitnessEvaluator evaluator = new SumEvaluator();
         PolyWorld newWorld = new PolyWorld(worldPopulation, evaluator);
         return newWorld;

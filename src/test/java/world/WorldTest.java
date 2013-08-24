@@ -1,6 +1,6 @@
 package world;
 
-import creature.SimpleCritter;
+import creature.MachineCritter;
 import junit.framework.Assert;
 import org.junit.Test;
 import utility.LiteLog;
@@ -67,7 +67,7 @@ public class WorldTest {
         World machineWorld = MachineWorld.buildMachineWorld();
         machineWorld.runWorld(numGenerations);
 
-        List<SimpleCritter> sorted = machineWorld.getSortedCritters();
+        List<MachineCritter> sorted = machineWorld.getSortedCritters();
         LiteLog.Log("Best is " + sorted.get(sorted.size() - 1).getDna());
         double diff = sorted.get(sorted.size() - 1).getFitness().getFitness();
         LiteLog.Log("Difference is " + 1 / diff);

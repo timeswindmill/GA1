@@ -2,6 +2,7 @@ package world;
 
 
 import control.RunConfig;
+import creature.Critter;
 import creature.SimpleCritter;
 import fitness.FitnessEvaluator;
 
@@ -30,17 +31,15 @@ public class WorldRunner {
         int tournamentSize = worldPopulation.getPopulationSize() / RunConfig.INSTANCE.getTournamentPercent();
         for (int ii = 0; ii < tournamentSize; ii++) {
 
-            SimpleCritter thisBestCritter = sortedCritters.get(sortedCritters.size() - ii - 1);
-            SimpleCritter randomCritter = worldPopulation.getRandomCritter();
-            SimpleCritter newOffspring = sortedCritters.get(ii);
+            Critter thisBestCritter = sortedCritters.get(sortedCritters.size() - ii - 1);
+            Critter randomCritter = worldPopulation.getRandomCritter();
+            Critter newOffspring = sortedCritters.get(ii);
 
             if ((randomCritter == null) || (newOffspring == null)) {
                 System.out.println("Unable to select Critters for tournament");
 
             } else {
 
-
-                //SimpleDna newSimpleDna = CritterBreeder.getNewDna(thisBestCritter,randomCritter);
                 newOffspring.reset(thisBestCritter.getDna(), randomCritter.getDna());
 
             }

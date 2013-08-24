@@ -10,8 +10,6 @@ public class ChunkLongTest {
         Chunk chunk = new ChunkLong(newBits);
         Assert.assertNotNull(chunk);
         Assert.assertEquals(1.0, chunk.getHash());
-
-
     }
 
     @Test

@@ -12,7 +12,8 @@ public class MachineWorld extends GeneralWorld {
 
 
     public static MachineWorld buildMachineWorld() {
-        Population worldPopulation = Population.createRandomPopulation(RunConfig.INSTANCE.getStartingSize());
+        Population worldPopulation = new PopulationMachine();
+        worldPopulation.createRandomPopulation(RunConfig.INSTANCE.getStartingSize());
         FitnessEvaluator evaluator = new MachineEvaluator();
         MachineWorld newWorld = new MachineWorld(worldPopulation, evaluator);
         return newWorld;

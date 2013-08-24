@@ -1,14 +1,12 @@
 package world;
 
-import creature.SimpleCritter;
-
 import java.util.List;
 
-public interface World {
+public interface World<T> {
 
     public void runWorld(int generations);
 
-    public List<SimpleCritter> getSortedCritters();
+    public List<T> getSortedCritters();
 
 
 }

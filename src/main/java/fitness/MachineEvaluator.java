@@ -8,7 +8,6 @@ public class MachineEvaluator implements FitnessEvaluator<MachineCritter> {
     private Machine machine;
 
 
-    //TODO
     @Override
     public void evaluateFitness(MachineCritter[] critters) {
 

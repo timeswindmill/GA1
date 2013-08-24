@@ -12,7 +12,8 @@ public class SumEvaluatorWorld extends GeneralWorld {
     }
 
     public static World buildSumEvaluatorWorld() {
-        Population worldPopulation = Population.createRandomPopulation(RunConfig.INSTANCE.getStartingSize());
+        Population worldPopulation = new PopulationSimple();
+        worldPopulation.createRandomPopulation(RunConfig.INSTANCE.getStartingSize());
         FitnessEvaluator evaluator = new SumEvaluator();
         SumEvaluatorWorld newWorld = new SumEvaluatorWorld(worldPopulation, evaluator);
         return newWorld;

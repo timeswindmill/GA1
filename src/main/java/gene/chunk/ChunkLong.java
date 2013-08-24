@@ -38,14 +38,20 @@ public class ChunkLong implements Chunk, Serializable {
         return bits;
     }
 
-    @Override
-    public void randomizeBits() {
-        bits = MathsFunctions.getRandomInt(MAX_BIT);
-
-    }
+//    @Override
+//    public void randomizeBits() {
+//        bits = MathsFunctions.getRandomInt(MAX_BIT);
+//
+//    }
 
     public String toString() {
         return String.valueOf(bits);
+    }
+
+    public static ChunkLong createRandom() {
+        long bits = MathsFunctions.getRandomInt(MAX_BIT);
+        ChunkLong newChunk = new ChunkLong(bits);
+        return newChunk;
     }
 
 

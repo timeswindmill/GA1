@@ -5,7 +5,7 @@ import fitness.FitnessEvaluator;
 
 import java.util.List;
 
-public class GeneralWorld implements World {
+public class GeneralWorld implements World<SimpleCritter> {
 
     private Population worldPopulation;
     private FitnessEvaluator evaluator;

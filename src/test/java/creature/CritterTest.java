@@ -12,7 +12,7 @@ public class CritterTest {
     @Test
     public void testCreateSimpleCritter() throws Exception {
 
-        SimpleDna dna = DnaHelper.createRandomSimpleDna();
+        SimpleDna dna = SimpleDnaHelper.INSTANCE.createRandomDna();
         Critter simple = new SimpleCritter(23, dna);
         Assert.assertNotNull(simple);
         Assert.assertNotNull(simple.getDna());
@@ -23,7 +23,7 @@ public class CritterTest {
 
     @Test
     public void testResetCritter() throws Exception {
-        SimpleDna dna = DnaHelper.createRandomSimpleDna();
+        SimpleDna dna = SimpleDnaHelper.INSTANCE.createRandomDna();
         double originalHash = dna.getHash();
         SimpleCritter simple = new SimpleCritter(23, dna);
         Assert.assertNotNull(simple);
@@ -33,8 +33,8 @@ public class CritterTest {
         Assert.assertEquals(13.0, simple.getFitness().getFitness());
 
 
-        SimpleDna dnaParent1 = DnaHelper.createRandomSimpleDna();
-        SimpleDna dnaParent2 = DnaHelper.createRandomSimpleDna();
+        SimpleDna dnaParent1 = SimpleDnaHelper.INSTANCE.createRandomDna();
+        SimpleDna dnaParent2 = SimpleDnaHelper.INSTANCE.createRandomDna();
         simple.reset(dnaParent1, dnaParent2);
         Assert.assertEquals(0.0, simple.getFitness().getFitness());
         Assert.assertNotNull(simple);
@@ -47,12 +47,12 @@ public class CritterTest {
     public void testCompareCritter() throws Exception {
 
 
-        SimpleDna dna1 = DnaHelper.createRandomSimpleDna();
+        SimpleDna dna1 = SimpleDnaHelper.INSTANCE.createRandomDna();
         SimpleCritter simple1 = new SimpleCritter(23, dna1);
         Assert.assertNotNull(simple1);
         Assert.assertEquals(0.0, simple1.getFitness().getFitness());
 
-        SimpleDna dna2 = DnaHelper.createRandomSimpleDna();
+        SimpleDna dna2 = SimpleDnaHelper.INSTANCE.createRandomDna();
         Critter simple2 = new SimpleCritter(23, dna2);
         Assert.assertNotNull(simple2);
         Assert.assertEquals(0.0, simple2.getFitness().getFitness());
@@ -78,9 +78,9 @@ public class CritterTest {
     @Test
     public void testEvaluateFitness() throws Exception {
 
-        SimpleCritter c1 = CritterHelper.createNewRandomCritter(1);
-        SimpleCritter c2 = CritterHelper.createNewRandomCritter(2);
-        SimpleCritter c3 = CritterHelper.createNewRandomCritter(13);
+        SimpleCritter c1 = CritterHelper.createRandomSimpleCritter(1);
+        SimpleCritter c2 = CritterHelper.createRandomSimpleCritter(2);
+        SimpleCritter c3 = CritterHelper.createRandomSimpleCritter(13);
 
 
         FitnessEvaluator evaluatorZero = new EvaluatorZero();
