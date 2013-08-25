@@ -4,7 +4,7 @@ import control.RunConfig;
 import creature.SimpleCritter;
 import gene.SimpleDna;
 import gene.chunk.Chunk;
-import gene.chunk.ChunkLong;
+import gene.chunk.ChunkSimple;
 
 public class SumEvaluator implements FitnessEvaluator<SimpleCritter> {
     @Override
@@ -43,8 +43,8 @@ public class SumEvaluator implements FitnessEvaluator<SimpleCritter> {
     public Fitness getMaxPossibleFitness(gene.Dna simpleDna) {
         Chunk[] chunks = simpleDna.getChunks();
         int chunkLength = chunks.length;
-        // only implemented ChunkLong so far
-        if (chunks[0] instanceof ChunkLong) {
+        // only implemented ChunkSimple so far
+        if (chunks[0] instanceof ChunkSimple) {
             int maxBit = RunConfig.INSTANCE.getMaxDnaBit();
             double maxVal = Math.pow(maxBit, chunkLength);
             return Fitness.createFitness(maxVal);

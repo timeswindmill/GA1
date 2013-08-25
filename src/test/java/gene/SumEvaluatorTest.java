@@ -11,9 +11,9 @@ public class SumEvaluatorTest {
     @Test
     public void testEvaluateFitness() throws Exception {
 
-        long[] startString1 = {1L, 3L, 5L, 7L, 9L};
+        int[] startString1 = {1, 3, 5, 7, 9};
 
-        SimpleDna newSimpleDna1 = SimpleDnaHelper.INSTANCE.createDnaFromLongString(startString1);
+        SimpleDna newSimpleDna1 = SimpleDnaHelper.INSTANCE.createDnaFromString(startString1);
         SimpleCritter critter = CritterHelper.createNewSimpleCritter(newSimpleDna1, 1);
         FitnessEvaluator sumEvaluator = new SumEvaluator();
         sumEvaluator.evaluateFitness(critter);

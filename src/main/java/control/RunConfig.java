@@ -11,7 +11,8 @@ public enum RunConfig {
     private int tournamentPercent = 20;
     private int mutatePercent = 5;
     private int maxDnaBit = 99;
-    private int minInstructions = 1;
+    private int minInstructions = 4;
+    private int numRegisters = 50;
 
 
     private RunConfig() {
@@ -50,6 +51,11 @@ public enum RunConfig {
             minInstructions = Integer.parseInt(sMin);
         }
 
+        String sReg = config.getProperty("NUM_REGISTERS");
+        if (sReg != null) {
+            numRegisters = Integer.parseInt(sReg);
+        }
+
 
     }
 
@@ -76,6 +82,10 @@ public enum RunConfig {
 
     public int getMinInstructions() {
         return minInstructions;
+    }
+
+    public int getNumRegisters() {
+        return numRegisters;
     }
 
 

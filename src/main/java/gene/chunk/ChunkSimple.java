@@ -6,17 +6,17 @@ import utility.MathsFunctions;
 
 import java.io.Serializable;
 
-public class ChunkLong implements Chunk, Serializable {
+public class ChunkSimple implements Chunk, Serializable {
 
-    private long bits;
+    private int bits;
     private static int MAX_BIT = RunConfig.INSTANCE.getMaxDnaBit();
     private static int BIT_LENGTH = 1;
 
-    public ChunkLong() {
+    public ChunkSimple() {
 
     }
 
-    public ChunkLong(long newBits) {
+    public ChunkSimple(int newBits) {
         bits = newBits;
     }
 
@@ -27,8 +27,8 @@ public class ChunkLong implements Chunk, Serializable {
     }
 
     @Override
-    public long[] getBits() {
-        long[] bits = new long[1];
+    public int[] getBits() {
+        int[] bits = new int[1];
         bits[0] = this.bits;
         return bits;
     }
@@ -48,9 +48,9 @@ public class ChunkLong implements Chunk, Serializable {
         return String.valueOf(bits);
     }
 
-    public static ChunkLong createRandom() {
-        long bits = MathsFunctions.getRandomInt(MAX_BIT);
-        ChunkLong newChunk = new ChunkLong(bits);
+    public static ChunkSimple createRandom() {
+        int bits = MathsFunctions.getRandomInt(MAX_BIT);
+        ChunkSimple newChunk = new ChunkSimple(bits);
         return newChunk;
     }
 

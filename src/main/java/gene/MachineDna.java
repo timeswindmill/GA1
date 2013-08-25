@@ -4,6 +4,7 @@ package gene;
 import control.RunConfig;
 import gene.chunk.Chunk;
 import gene.chunk.ChunkMachine;
+import instruction.Program;
 import utility.MathsFunctions;
 
 public class MachineDna implements Dna<ChunkMachine> {
@@ -95,5 +96,18 @@ public class MachineDna implements Dna<ChunkMachine> {
         return sb.toString();
     }
 
+    public Program createProgram() {
+
+        int bitLength = ChunkMachine.bitLength;
+        int numBits = chunks.length * bitLength;
+        int[] allBits = new int[numBits];
+        for (int ii = 0; ii < chunks.length; ii++) {
+            ChunkMachine chunk = chunks[ii];
+            System.arraycopy(chunk.getBits(), 0, allBits, ii * bitLength, bitLength);
+        }
+        Program newProg = Program.createProgram(allBits);
+        return newProg;
+
+    }
 
 }

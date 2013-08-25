@@ -7,7 +7,7 @@ public interface DnaHelper<T> {
 
     public T createRandomDna();
 
-    public T createDnaFromLongString(long[] startString);
+    public T createDnaFromString(int[] startString);
 
     public T createDnaFromCombined(T dna1, T dna2);
 
@@ -17,9 +17,9 @@ public interface DnaHelper<T> {
     public void writeToFile(T[] dna, String fileName);
 
 //    public static SimpleDna createRandomSimpleDna(int dnaLength) {
-//        ChunkLong[] newString = new ChunkLong[dnaLength];
+//        ChunkSimple[] newString = new ChunkSimple[dnaLength];
 //        for (int ii = 0; ii < newString.length; ii++) {
-//            ChunkLong thisChunk = new ChunkLong();
+//            ChunkSimple thisChunk = new ChunkSimple();
 //            thisChunk.randomizeBits();
 //            newString[ii] = thisChunk;
 //        }
@@ -33,9 +33,9 @@ public interface DnaHelper<T> {
 //    }
 //
 //    public static SimpleDna createSimpleDnaFromLongString(long[] startString) {
-//        ChunkLong[] newString = new ChunkLong[startString.length];
+//        ChunkSimple[] newString = new ChunkSimple[startString.length];
 //        for (int ii = 0; ii < newString.length; ii++) {
-//            ChunkLong thisChunk = new ChunkLong(startString[ii]);
+//            ChunkSimple thisChunk = new ChunkSimple(startString[ii]);
 //            newString[ii] = thisChunk;
 //        }
 //        SimpleDna newDna = new SimpleDna(newString);

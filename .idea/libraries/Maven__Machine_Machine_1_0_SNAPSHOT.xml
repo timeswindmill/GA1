@@ -8,6 +8,8 @@
     </JAVADOC>
     <SOURCES>
       <root url="jar://$MAVEN_REPOSITORY$/Machine/Machine/1.0-SNAPSHOT/Machine-1.0-SNAPSHOT-sources.jar!/" />
+      <root url="file://$PROJECT_DIR$/../Machine/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../Machine/src/test/java" />
     </SOURCES>
   </library>
 </component>

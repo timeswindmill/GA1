@@ -13,7 +13,7 @@ public class ChunkMachineTest {
 
     @Test
     public void testGetHash() throws Exception {
-        long[] newBits = new long[bitLength];
+        int[] newBits = new int[bitLength];
         Arrays.fill(newBits, 1);
         Chunk chunk = new ChunkMachine(newBits);
         Assert.assertNotNull(chunk);
@@ -23,7 +23,7 @@ public class ChunkMachineTest {
 
     @Test
     public void testGetBits() throws Exception {
-        long[] newBits = new long[4];
+        int[] newBits = new int[4];
         Arrays.fill(newBits, 1);
         Chunk chunk = new ChunkMachine(newBits);
         Assert.assertNotNull(chunk);
@@ -32,7 +32,7 @@ public class ChunkMachineTest {
 
     @Test
     public void testGetChunkSum() throws Exception {
-        long[] newBits = new long[bitLength];
+        int[] newBits = new int[bitLength];
         Arrays.fill(newBits, 1);
         Chunk chunk = new ChunkMachine(newBits);
         Assert.assertNotNull(chunk);
@@ -43,7 +43,7 @@ public class ChunkMachineTest {
     @Test
     public void testBuildFromLongStrings() throws Exception {
         {    // create one chunk
-            long[] newBits = new long[bitLength];
+            int[] newBits = new int[bitLength];
             Arrays.fill(newBits, 1);
             Chunk chunk = new ChunkMachine(newBits);
             Assert.assertNotNull(chunk);
@@ -51,14 +51,14 @@ public class ChunkMachineTest {
         }
 
         {    // create one chunk . longer string, extra bits should be ignored
-            long[] newBits = new long[bitLength + 17];
+            int[] newBits = new int[bitLength + 17];
             Arrays.fill(newBits, 1);
             Chunk chunk = new ChunkMachine(newBits);
             Assert.assertNotNull(chunk);
             Assert.assertEquals(bitLength, (int) chunk.getChunkSum());
         }
         {    // check array too short
-            long[] newBits = new long[bitLength - 1];
+            int[] newBits = new int[bitLength - 1];
             Arrays.fill(newBits, 1);
             Chunk chunk = new ChunkMachine(newBits);
             Assert.assertNotNull(chunk);
@@ -67,7 +67,7 @@ public class ChunkMachineTest {
 
 
         {    // create multiple chunk , should create 3 chunks
-            long[] newBits = new long[bitLength * 3];
+            int[] newBits = new int[bitLength * 3];
             Arrays.fill(newBits, 1);
             Chunk[] chunks = ChunkMachine.createMultipleChunks(newBits);
             Assert.assertNotNull(chunks);
@@ -78,7 +78,7 @@ public class ChunkMachineTest {
 
         }
         {    // create multiple chunk , should create 3 chunks, should ignore extra bits
-            long[] newBits = new long[(bitLength - 1) + bitLength * 3];
+            int[] newBits = new int[(bitLength - 1) + bitLength * 3];
             Arrays.fill(newBits, 1);
             Chunk[] chunks = ChunkMachine.createMultipleChunks(newBits);
             Assert.assertNotNull(chunks);
@@ -90,7 +90,7 @@ public class ChunkMachineTest {
         }
 
         {    // create multiple chunk , bit length too short
-            long[] newBits = new long[(bitLength - 1)];
+            int[] newBits = new int[(bitLength - 1)];
             Arrays.fill(newBits, 1);
             Chunk[] chunks = ChunkMachine.createMultipleChunks(newBits);
             Assert.assertNotNull(chunks);

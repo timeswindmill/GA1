@@ -1,7 +1,7 @@
 package gene;
 
 import control.RunConfig;
-import gene.chunk.ChunkLong;
+import gene.chunk.ChunkSimple;
 import utility.LiteLog;
 
 import java.io.*;
@@ -12,9 +12,9 @@ public enum SimpleDnaHelper implements DnaHelper<SimpleDna> {
 
     @Override
     public SimpleDna createRandomDna(int dnaLength) {
-        ChunkLong[] newString = new ChunkLong[dnaLength];
+        ChunkSimple[] newString = new ChunkSimple[dnaLength];
         for (int ii = 0; ii < newString.length; ii++) {
-            ChunkLong thisChunk = ChunkLong.createRandom();
+            ChunkSimple thisChunk = ChunkSimple.createRandom();
             newString[ii] = thisChunk;
         }
         SimpleDna newDna = new SimpleDna(newString);
@@ -28,10 +28,10 @@ public enum SimpleDnaHelper implements DnaHelper<SimpleDna> {
     }
 
     @Override
-    public SimpleDna createDnaFromLongString(long[] startString) {
-        ChunkLong[] newString = new ChunkLong[startString.length];
+    public SimpleDna createDnaFromString(int[] startString) {
+        ChunkSimple[] newString = new ChunkSimple[startString.length];
         for (int ii = 0; ii < newString.length; ii++) {
-            ChunkLong thisChunk = new ChunkLong(startString[ii]);
+            ChunkSimple thisChunk = new ChunkSimple(startString[ii]);
             newString[ii] = thisChunk;
         }
         SimpleDna newDna = new SimpleDna(newString);
@@ -89,9 +89,9 @@ public enum SimpleDnaHelper implements DnaHelper<SimpleDna> {
 
 
     //    public static SimpleDna createRandomSimpleDna(int dnaLength) {
-//        ChunkLong[] newString = new ChunkLong[dnaLength];
+//        ChunkSimple[] newString = new ChunkSimple[dnaLength];
 //        for (int ii = 0; ii < newString.length; ii++) {
-//            ChunkLong thisChunk = new ChunkLong();
+//            ChunkSimple thisChunk = new ChunkSimple();
 //            thisChunk.randomizeBits();
 //            newString[ii] = thisChunk;
 //        }
@@ -105,9 +105,9 @@ public enum SimpleDnaHelper implements DnaHelper<SimpleDna> {
 //    }
 //
 //    public static SimpleDna createSimpleDnaFromLongString(long[] startString) {
-//        ChunkLong[] newString = new ChunkLong[startString.length];
+//        ChunkSimple[] newString = new ChunkSimple[startString.length];
 //        for (int ii = 0; ii < newString.length; ii++) {
-//            ChunkLong thisChunk = new ChunkLong(startString[ii]);
+//            ChunkSimple thisChunk = new ChunkSimple(startString[ii]);
 //            newString[ii] = thisChunk;
 //        }
 //        SimpleDna newDna = new SimpleDna(newString);

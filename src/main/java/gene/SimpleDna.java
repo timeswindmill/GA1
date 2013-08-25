@@ -3,20 +3,20 @@ package gene;
 
 import control.RunConfig;
 import gene.chunk.Chunk;
-import gene.chunk.ChunkLong;
+import gene.chunk.ChunkSimple;
 import utility.MathsFunctions;
 
-public class SimpleDna implements Dna<ChunkLong> {
+public class SimpleDna implements Dna<ChunkSimple> {
 
-    private ChunkLong[] dnaString;
+    private ChunkSimple[] dnaString;
 
-    public SimpleDna(ChunkLong[] newString) {
+    public SimpleDna(ChunkSimple[] newString) {
         dnaString = newString;
     }
 
 
     @Override
-    public ChunkLong[] getChunks() {
+    public ChunkSimple[] getChunks() {
         return dnaString;
     }
 
@@ -30,12 +30,12 @@ public class SimpleDna implements Dna<ChunkLong> {
     }
 
     @Override
-    public void combineChunks(ChunkLong[] parent1, ChunkLong[] parent2) {
+    public void combineChunks(ChunkSimple[] parent1, ChunkSimple[] parent2) {
         int minLength = (parent1.length < parent2.length) ? parent1.length : parent2.length;
         for (int ii = 0; ii < minLength; ii++) {
 
             if (MathsFunctions.getRandomInt(100) < RunConfig.INSTANCE.getMutatePercent()) {
-                dnaString[ii] = ChunkLong.createRandom();
+                dnaString[ii] = ChunkSimple.createRandom();
             }
             if (MathsFunctions.getTrueFalse()) {
                 dnaString[ii] = parent1[ii];
@@ -47,7 +47,7 @@ public class SimpleDna implements Dna<ChunkLong> {
     }
 
     @Override
-    public int compareTo(Dna<ChunkLong> o) {
+    public int compareTo(Dna<ChunkSimple> o) {
         if (o == null) {
             return 1;
         }
@@ -78,10 +78,10 @@ public class SimpleDna implements Dna<ChunkLong> {
         }
     }
 
-    //    private ChunkLong[] dnaString;
+    //    private ChunkSimple[] dnaString;
 //
 //
-//    public SimpleDna(ChunkLong[] newString) {
+//    public SimpleDna(ChunkSimple[] newString) {
 //        dnaString = newString;
 //    }
 //
@@ -102,14 +102,14 @@ public class SimpleDna implements Dna<ChunkLong> {
     }
 //
 //    @Override
-//    public ChunkLong[] getDnaCopy() {
+//    public ChunkSimple[] getDnaCopy() {
 //
 //        return deepCopy(dnaString);
 //
 //    }
 //
-//    private ChunkLong[] deepCopy(ChunkLong[] input) {
-//        ChunkLong[] newChunks = input.clone();
+//    private ChunkSimple[] deepCopy(ChunkSimple[] input) {
+//        ChunkSimple[] newChunks = input.clone();
 //        return newChunks;
 //    }
 //

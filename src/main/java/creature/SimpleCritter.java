@@ -3,7 +3,7 @@ package creature;
 
 import fitness.Fitness;
 import gene.SimpleDna;
-import gene.chunk.ChunkLong;
+import gene.chunk.ChunkSimple;
 
 public class SimpleCritter implements Critter<SimpleDna> {
 
@@ -34,8 +34,8 @@ public class SimpleCritter implements Critter<SimpleDna> {
 
     @Override
     public void reset(SimpleDna parent1, SimpleDna parent2) {
-        ChunkLong[] p1 = parent1.getChunks();
-        ChunkLong[] p2 = parent2.getChunks();
+        ChunkSimple[] p1 = parent1.getChunks();
+        ChunkSimple[] p2 = parent2.getChunks();
         myDna.combineChunks(p1, p2);
         fitness.resetFitness();
     }

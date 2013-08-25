@@ -30,9 +30,13 @@ public enum MachineDnaHelper implements DnaHelper<MachineDna> {
     }
 
     @Override
-    public MachineDna createDnaFromLongString(long[] startString) {
+    public MachineDna createDnaFromString(int[] startString) {
 
-        ChunkMachine[] newChunks = ChunkMachine.createMultipleChunks(startString);
+        int[] temp = new int[startString.length];
+        for (int ii = 0; ii < startString.length; ii++) {
+            temp[ii] = (int) startString[ii];
+        }
+        ChunkMachine[] newChunks = ChunkMachine.createMultipleChunks(temp);
         MachineDna newDna = new MachineDna(newChunks);
         return newDna;
 

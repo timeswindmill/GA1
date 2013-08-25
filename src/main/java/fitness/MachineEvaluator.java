@@ -2,11 +2,20 @@ package fitness;
 
 import creature.MachineCritter;
 import gene.Dna;
+import instruction.Program;
 import machine.Machine;
 
 public class MachineEvaluator implements FitnessEvaluator<MachineCritter> {
-    private Machine machine;
 
+    //TODO set up default prog
+    private static Machine machine = new Machine(null, new long[1]);
+
+    private MachineTest machineTest;
+
+
+    public MachineEvaluator(MachineTest test) {
+        machineTest = test;
+    }
 
     @Override
     public void evaluateFitness(MachineCritter[] critters) {
@@ -19,7 +28,24 @@ public class MachineEvaluator implements FitnessEvaluator<MachineCritter> {
 
     @Override
     public void evaluateFitness(MachineCritter critter) {
+        Program thisProgram = critter.getDna().createProgram();
+        double totalFitness = 0;
+        machine.setProgram(thisProgram);
+        // initialise registers
+        for (int ii = 0; ii < MachineAddTest.NUM_TESTS; ii++) {
+            long[] registers = machineTest.getRegisters(ii);
+            machine.loadRegisters(registers);
+            machine.runProgram();
 
+            if (machine.isLoopDetected()) {
+                totalFitness--;
+            } else {
+                double thisFitness = machineTest.calculateFitness(machine, ii);
+                totalFitness += thisFitness;
+            }
+
+        }
+        critter.getFitness().updateFitness(Fitness.createFitness(totalFitness));
 
     }
 
@@ -34,10 +60,10 @@ public class MachineEvaluator implements FitnessEvaluator<MachineCritter> {
         return Fitness.createFitness(0);
     }
 
-
-//    private Program createProgramFromDna(){
+//     private Machine setUpMachine(Program program, long [] registers){
+//        Machine machine = new Machine(program, registers);
+//        return machine;
 //
 //    }
-
 
 }

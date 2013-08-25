@@ -12,8 +12,8 @@ public class DnaTest {
         Dna newSimpleDna = SimpleDnaHelper.INSTANCE.createRandomDna();
         Assert.assertNotNull(newSimpleDna);
 
-        long[] startString = {1L, 3L, 5L, 7L, 9L};
-        SimpleDna newSimpleDna2 = SimpleDnaHelper.INSTANCE.createDnaFromLongString(startString);
+        int[] startString = {1, 3, 5, 7, 9};
+        SimpleDna newSimpleDna2 = SimpleDnaHelper.INSTANCE.createDnaFromString(startString);
         double hash2 = newSimpleDna2.getHash();
         Assert.assertEquals(25.0, hash2);
 
@@ -23,14 +23,14 @@ public class DnaTest {
     @Test
     public void testCombineDna() throws Exception {
 
-        long[] startString1 = {1L, 3L, 5L, 7L, 9L};
-        long[] startString2 = {2L, 4L, 6L, 8L, 10L};
+        int[] startString1 = {1, 3, 5, 7, 9};
+        int[] startString2 = {2, 4, 6, 8, 10};
 
-        SimpleDna newSimpleDna1 = SimpleDnaHelper.INSTANCE.createDnaFromLongString(startString1);
+        SimpleDna newSimpleDna1 = SimpleDnaHelper.INSTANCE.createDnaFromString(startString1);
         double hash1 = newSimpleDna1.getHash();
         Assert.assertEquals(25.0, hash1);
 
-        SimpleDna newSimpleDna2 = SimpleDnaHelper.INSTANCE.createDnaFromLongString(startString2);
+        SimpleDna newSimpleDna2 = SimpleDnaHelper.INSTANCE.createDnaFromString(startString2);
         double hash2 = newSimpleDna2.getHash();
         Assert.assertEquals(30.0, hash2);
 
