@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 public class ChunkSimple implements Chunk, Serializable {
 
-    private int bits;
+    private int simpleBits;
     private static int MAX_BIT = RunConfig.INSTANCE.getMaxDnaBit();
     private static int BIT_LENGTH = 1;
 
@@ -17,25 +17,25 @@ public class ChunkSimple implements Chunk, Serializable {
     }
 
     public ChunkSimple(int newBits) {
-        bits = newBits;
+        simpleBits = newBits;
     }
 
     @Override
     public double getHash() {
-        long value = bits;
+        long value = simpleBits;
         return value;
     }
 
     @Override
     public int[] getBits() {
         int[] bits = new int[1];
-        bits[0] = this.bits;
+        bits[0] = this.simpleBits;
         return bits;
     }
 
     @Override
     public double getChunkSum() {
-        return bits;
+        return simpleBits;
     }
 
 //    @Override
@@ -45,7 +45,7 @@ public class ChunkSimple implements Chunk, Serializable {
 //    }
 
     public String toString() {
-        return String.valueOf(bits);
+        return String.valueOf(simpleBits);
     }
 
     public static ChunkSimple createRandom() {

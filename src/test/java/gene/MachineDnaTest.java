@@ -72,7 +72,7 @@ public class MachineDnaTest {
         {
             int[] newCodes = {OpCodes.ADD.ordinal(), 2, 3, 0, OpCodes.NOOP.ordinal(), 0, 0, 0};
 
-            ChunkMachine[] chunks = {createChunk(newCodes)};
+            ChunkMachine[] chunks = createChunk(newCodes);
             MachineDna mDna = new MachineDna(chunks);
             Assert.assertNotNull(mDna);
 
@@ -88,6 +88,42 @@ public class MachineDnaTest {
 
         }
 
+        {   // test create longer program
+            int[] newCodes = {
+                    OpCodes.NOOP.ordinal(), 2, 3, 0,
+                    OpCodes.JME.ordinal(), 4, 3, 0,
+                    OpCodes.JMP.ordinal(), 2, 8, 1,
+                    OpCodes.INC.ordinal(), 1, 5, 5,
+                    OpCodes.DEC.ordinal(), 2, 3, 0,
+                    OpCodes.MULT.ordinal(), 2, 3, 7,
+                    OpCodes.JMP.ordinal(), 2, 33, 0,
+                    OpCodes.DIV.ordinal(), 2, 4, 9,
+                    OpCodes.SUB.ordinal(), 2, 7, 0,
+                    OpCodes.JME.ordinal(), 2, 13, 0,
+                    OpCodes.HALT.ordinal(), 2, 3, 0,
+                    OpCodes.ADD.ordinal(), 5, 7, 0,
+                    OpCodes.INC.ordinal(), 2, 3, 0,
+                    OpCodes.ADD.ordinal(), 2, 3, 0,
+                    OpCodes.JME.ordinal(), 2, 3, 0,
+                    OpCodes.HALT.ordinal(), 0, 0, 0};
+
+            ChunkMachine[] chunks = createChunk(newCodes);
+            MachineDna mDna = new MachineDna(chunks);
+            Assert.assertNotNull(mDna);
+
+            Program newProg = mDna.createProgram();
+            Assert.assertNotNull(newProg);
+            Assert.assertTrue(newProg.getProgramLength() == 16);
+
+            Instruction[] instructions = newProg.getInstructions();
+
+            Assert.assertTrue(instructions[0].getOpCode() == OpCodes.NOOP);
+            Assert.assertTrue(instructions[1].getOpCode() == OpCodes.JME);
+            Assert.assertTrue(instructions[15].getOpCode() == OpCodes.HALT);
+
+
+        }
+
 
     }
 
@@ -99,8 +135,8 @@ public class MachineDnaTest {
         return cm;
     }
 
-    private ChunkMachine createChunk(int[] bits) {
-        ChunkMachine cm = new ChunkMachine(bits);
+    private ChunkMachine[] createChunk(int[] bits) {
+        ChunkMachine[] cm = ChunkMachine.createMultipleChunks(bits);
         return cm;
     }
 

@@ -1,9 +1,9 @@
 package fitness;
 
-import creature.SimpleCritter;
+import creature.MachineCritter;
 import gene.Dna;
 
-public class DataSetEvaluator implements FitnessEvaluator<SimpleCritter> {
+public class DataSetEvaluator implements FitnessEvaluator<MachineCritter> {
 
 
     private final static int[] DATA_SET_1 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
@@ -13,12 +13,12 @@ public class DataSetEvaluator implements FitnessEvaluator<SimpleCritter> {
 
 
     @Override
-    public void evaluateFitness(SimpleCritter[] critters) {
+    public void evaluateFitness(MachineCritter[] critters) {
 
     }
 
     @Override
-    public void evaluateFitness(SimpleCritter critter) {
+    public void evaluateFitness(MachineCritter critter) {
 
     }
 

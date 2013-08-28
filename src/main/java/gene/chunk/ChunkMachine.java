@@ -4,14 +4,16 @@ import control.RunConfig;
 import machine.MachineConstants;
 import utility.MathsFunctions;
 
-public class ChunkMachine extends ChunkSimple {
+import java.io.Serializable;
+
+public class ChunkMachine implements Chunk, Serializable {
 
     //TODO check these are being used
     public static final int NUM_INSTRUCTIONS = RunConfig.INSTANCE.getMinInstructions();
     public static final int bitLength = MachineConstants.INSTRUCTION_LENGTH * NUM_INSTRUCTIONS;
     public static int MAX_BIT = RunConfig.INSTANCE.getMaxDnaBit();
 
-    private int[] bits = new int[bitLength];
+    private int[] machineBits = new int[bitLength];
 
     public ChunkMachine() {
 
@@ -20,7 +22,7 @@ public class ChunkMachine extends ChunkSimple {
     public ChunkMachine(int[] newBits) {
         int length = newBits.length < bitLength ? newBits.length : bitLength;
         // only allow bitlength bits
-        System.arraycopy(newBits, 0, bits, 0, length);
+        System.arraycopy(newBits, 0, machineBits, 0, length);
     }
 
 
@@ -31,24 +33,18 @@ public class ChunkMachine extends ChunkSimple {
 
     @Override
     public int[] getBits() {
-        return bits;
+        return machineBits;
     }
 
     @Override
     public double getChunkSum() {
         double sum = 0;
-        for (long bit : bits) {
+        for (long bit : machineBits) {
             sum += bit;
         }
         return sum;
     }
 
-//    @Override
-//    public void randomizeBits() {
-//        for (int ii = 0; ii < bits.length; ii++) {
-//            bits[ii] = MathsFunctions.getRandomInt(MAX_BIT);
-//        }
-//    }
 
     // helper method
     public static ChunkMachine createRandom() {
@@ -78,6 +74,23 @@ public class ChunkMachine extends ChunkSimple {
             newChunks[ii] = new ChunkMachine(tempBits);
         }
         return newChunks;
+    }
+
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{");
+
+        for (long thisBit : machineBits) {
+            sb.append(thisBit);
+            sb.append(",");
+        }
+        // remove spurious comma
+        sb.setLength(sb.length() - 1);
+
+        sb.append("}");
+        return sb.toString();
+
     }
 
 

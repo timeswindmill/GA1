@@ -7,13 +7,12 @@ import machine.Machine;
 
 public class MachineEvaluator implements FitnessEvaluator<MachineCritter> {
 
-    //TODO set up default prog
-    private static Machine machine = new Machine(null, new long[1]);
 
     private MachineTest machineTest;
+    private Machine machine;
 
-
-    public MachineEvaluator(MachineTest test) {
+    public MachineEvaluator(Machine machine, MachineTest test) {
+        this.machine = machine;
         machineTest = test;
     }
 
@@ -60,10 +59,5 @@ public class MachineEvaluator implements FitnessEvaluator<MachineCritter> {
         return Fitness.createFitness(0);
     }
 
-//     private Machine setUpMachine(Program program, long [] registers){
-//        Machine machine = new Machine(program, registers);
-//        return machine;
-//
-//    }
 
 }

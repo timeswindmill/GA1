@@ -5,6 +5,7 @@ import fitness.FitnessEvaluator;
 import fitness.MachineAddTest;
 import fitness.MachineEvaluator;
 import fitness.MachineTest;
+import machine.Machine;
 
 public class MachineWorld extends GeneralWorld {
 
@@ -18,7 +19,8 @@ public class MachineWorld extends GeneralWorld {
     public static MachineWorld buildMachineWorld() {
         Population worldPopulation = new PopulationMachine();
         worldPopulation.createRandomPopulation(RunConfig.INSTANCE.getStartingSize());
-        FitnessEvaluator evaluator = new MachineEvaluator(currentTest);
+        Machine machine = new Machine();
+        FitnessEvaluator evaluator = new MachineEvaluator(machine, currentTest);
         MachineWorld newWorld = new MachineWorld(worldPopulation, evaluator);
         return newWorld;
 

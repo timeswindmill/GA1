@@ -98,6 +98,17 @@ public class ChunkMachineTest {
             for (Chunk chunk : chunks) Assert.assertEquals(bitLength - 1, (int) chunk.getChunkSum());
 
         }
+        {    // create multiple chunk , should create 7 chunks
+            int[] newBits = new int[bitLength * 7];
+            Arrays.fill(newBits, 1);
+            Chunk[] chunks = ChunkMachine.createMultipleChunks(newBits);
+            Assert.assertNotNull(chunks);
+            Assert.assertEquals(7, chunks.length);
+            for (Chunk chunk : chunks) {
+                Assert.assertEquals(bitLength, (int) chunk.getChunkSum());
+            }
+
+        }
 
 
     }

@@ -6,13 +6,14 @@ public enum RunConfig {
 
     INSTANCE;
 
-    private int defaultDnaLength = 10;
     private int startingSize = 1000;
     private int tournamentPercent = 20;
     private int mutatePercent = 5;
-    private int maxDnaBit = 99;
+    private int maxDnaBit = 10;
     private int minInstructions = 4;
-    private int numRegisters = 50;
+    private int numRegisters = 10;
+    // a default of 2 chunks = 8 instructions
+    private int defaultDnaLength = 2;
 
 
     private RunConfig() {

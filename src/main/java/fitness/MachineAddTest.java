@@ -7,9 +7,7 @@ import java.util.Arrays;
 
 public class MachineAddTest implements MachineTest {
 
-    public static final int NUM_TESTS = 4;
-
-    private Machine machine;
+    public static final int NUM_TESTS = 8;
 
     public long[] getRegisters(int testNum) {
         long[] newRegisters = new long[RunConfig.INSTANCE.getNumRegisters()];
@@ -39,6 +37,31 @@ public class MachineAddTest implements MachineTest {
                 newRegisters[1] = 0;
                 newRegisters[2] = 19;
                 break;
+
+            case 4:
+                newRegisters[0] = 0;
+                newRegisters[1] = 10;
+                newRegisters[2] = 19;
+                break;
+
+            case 5:
+                newRegisters[0] = 11;
+                newRegisters[1] = 20;
+                newRegisters[2] = 3;
+                break;
+
+            case 6:
+                newRegisters[0] = 18;
+                newRegisters[1] = 2;
+                newRegisters[2] = 11;
+                break;
+
+            case 7:
+                newRegisters[0] = 0;
+                newRegisters[1] = 0;
+                newRegisters[2] = 145;
+                break;
+
         }
 
         return newRegisters;
@@ -62,6 +85,19 @@ public class MachineAddTest implements MachineTest {
             case 3:
                 correctAnswer = 19;
                 break;
+            case 4:
+                correctAnswer = 29;
+                break;
+            case 5:
+                correctAnswer = 23;
+                break;
+            case 6:
+                correctAnswer = 13;
+                break;
+            case 7:
+                correctAnswer = 145;
+                break;
+
         }
 
         if (machine.getRegisters().getValue(0) == correctAnswer) {

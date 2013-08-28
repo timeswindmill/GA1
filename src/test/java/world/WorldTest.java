@@ -1,6 +1,7 @@
 package world;
 
 import creature.MachineCritter;
+import gene.MachineDna;
 import junit.framework.Assert;
 import org.junit.Test;
 import utility.LiteLog;
@@ -62,17 +63,22 @@ public class WorldTest {
     @Test
     public void runMachineTest() throws Exception {
 
-        int numGenerations = 999;
+        int numGenerations = 99999;
         long startTime = System.currentTimeMillis();
         World machineWorld = MachineWorld.buildMachineWorld();
         machineWorld.runWorld(numGenerations);
 
         List<MachineCritter> sorted = machineWorld.getSortedCritters();
-        LiteLog.Log("Best is " + sorted.get(sorted.size() - 1).getDna());
+        MachineCritter bestCritter = sorted.get(sorted.size() - 1);
+        MachineDna bestDna = bestCritter.getDna();
+        LiteLog.Log("Best is " + bestDna);
+        LiteLog.Log("Fitness is " + bestCritter.getFitness().getFitness());
+        LiteLog.Log("Program is \n" + bestDna.createProgram());
+
         double diff = sorted.get(sorted.size() - 1).getFitness().getFitness();
         LiteLog.Log("Difference is " + 1 / diff);
 
-        LiteLog.Log("Worst is " + sorted.get(0).getDna());
+        //      LiteLog.Log("Worst is " + sorted.get(0).getDna());
 
         double elapsedTime = System.currentTimeMillis() - startTime;
         double avTime = elapsedTime / (1000 * numGenerations);

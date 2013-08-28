@@ -8,6 +8,5 @@ public interface Chunk {
 
     public double getChunkSum();
 
-//    public void randomizeBits();
 
 }
